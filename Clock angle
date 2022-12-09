@@ -1,0 +1,35 @@
+def CalculateAngle(h, m):
+    # validate the input
+    if (h < 0 or m < 0 or h > 12 or m > 60):
+        print('Wrong input')
+        exit()     #Exiting program if condition is true
+    if (h == 12):
+        h = 0
+    if (m == 60):
+        m = 0
+        h += 1
+        if (h > 12):
+           h = h - 12
+
+    # Calculate the angles moved by hour and minute hands with reference to 12:00
+    # 360 degree in 60 minutes so 6 degree in 1 minute
+    # 360 degree in 12 hours  so 360/12*60 in 1 minute
+    Hour_Angle = 0.5 * (h * 60 + m)
+    Minute_Angle = 6 * m
+
+    # Find the difference between two angles
+    angle = abs(Hour_Angle - Minute_Angle)
+
+    # Return the smaller angle of two possible angles
+    angle = min(360 - angle, angle)
+
+    return angle
+#Inputing the values h for Hours and m for Minutes
+h=int(input("Enter Hours: "))
+m=int(input("Enter Minutes: "))
+#Checking condition if hours are greater than 12
+if(h>=12):
+    h=abs(12-h)
+#printing and calling the calculateAngle() function
+print("Angle: ", CalculateAngle(h, m))
+print("To use it again please press shift + F10, Thankyou!! ")
